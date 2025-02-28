@@ -3,124 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up com Input</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-        
-html{
-    display:inline-flex
-}       
-
-        .janela {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-        }
-
-
-        .abas {
-            display: inline-flex;
-            justify-content: left;
-            text-align: center;
-            padding: 10px;
-            margin: 10px 0; /* Margem entre os botões */
-            background-color: rgb(110, 98, 180);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem; /* Use rem para texto responsivo */
-            cursor: pointer;
-            transition: background-color 0.3s; /* Transição suave */
-        }
-
-
-        #fotoperfil {
-            width: 300px;
-            border-radius: 50%;
-        }
-    </style>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1 id="saudação"></h1>
-    <p id="mensagem"></p>
+<body>  
+    <h1 id="saudação"></h1>  
+    <p id="mensagem"></p> <!-- Adicionado elemento para mensagens -->
     <div id="janela" class="janela">
         <div class="conteudo-janela">
             <h2>Por favor, digite seu nome!</h2>
             <input id="inputNome" type="text" placeholder="Digite seu nome..." required>
-            <button id="enviar" onclick="enviar()">Enviar</button>
+            <button class="botão" id="enviar" onclick="enviar()">Enviar</button>
         </div>
     </div>
     <main>
         <nav>
-            <div class="abas">Sobre Mim</div>
-            <div class="abas">Habilidades</div>
-            <div class="abas">Projetos</div>
-            <div class="abas">Currículo</div>
+            <div class="botão">Sobre Mim</div>
+            <div class="botão">Habilidades</div>
+            <div class="botão">Projetos</div>
+            <div class="botão">Currículo</div>
         </nav>
-        <section>
-            <div class="Descrição"></div>
-            <div class="perfil">
-                <img src="assets/fotoperfil.jpeg" id="fotoperfil" alt="Foto de perfil">
-            </div>
-        </section>
     </main>
-    <script>
-        function abrirPopup() {
-            document.getElementById("janela").style.display = "block";
-        }
-
-        function fecharPopup() {
-            document.getElementById("janela").style.display = "none";
-            document.querySelector("main").style.display = "block"; 
-        }
-
-        function enviar() {
-            const nome = document.getElementById("inputNome").value;
-            const mensagem = document.getElementById("mensagem");
-            const saudacao = document.getElementById("saudação");
-            const body = document.body; 
-
-            if (nome.trim() !== "") {
-                const agora = new Date(); 
-                const hora = agora.getHours(); 
-                let saudacaoTexto;
-                let backgroundImage;
-
-                
-                if (hora >= 6 && hora < 12) {
-                    saudacaoTexto = "Bom dia, " + nome + "!";
-                    backgroundImage = "url('assets/d1.jpg')"; 
-                } else if (hora >= 12 && hora < 18) {
-                    saudacaoTexto = "Boa tarde, " + nome + "!";
-                    backgroundImage = "url('assets/t1.jpg')"; 
-                } else if (hora >= 18 && hora < 24) {
-                    saudacaoTexto = "Boa noite, " + nome + "!";
-                    backgroundImage = "url('assets/n1.jpg')"; 
-                } else {
-                    saudacaoTexto = "Boa madrugada, " + nome + "!";
-                    backgroundImage = "url('assets/m1.jpg')"; 
-                }
-
-                saudacao.innerHTML = saudacaoTexto; 
-                body.style.backgroundImage = backgroundImage; 
-                
-                fecharPopup();
-                
-            } else {
-                mensagem.innerHTML = "Por favor, digite seu nome!"; 
-            }
-        }
-        
-        window.onload = function() {
-            abrirPopup();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
