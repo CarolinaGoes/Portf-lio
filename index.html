@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up com Input</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+       
+       body{
+        background-color: black;
+       }
+        .janela {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        
+        .conteudo-janela {
+            text-align: center;
+            background-color: #4a1df0ce;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        
+        #inputNome {
+            font-size: 30px;
+            font-family: "Great Vibes";
+        }
+        
+        #enviar {
+            font-size: 20px;
+            font-family: "Merriweather", serif;
+            background-color: rgb(110, 98, 180);
+            border-radius: 50%;
+            padding: 6px;
+            border: 3px solid black;
+        }
+        
+        .fechar {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .fechar:hover,
+        .fechar:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #saudação{
+            color:rgb(255, 255, 255);
+            text-align: center;
+            font-family: "Great Vibes";
+            font-size: 5dvw;
+        }
+    </style>
+</head>
+<body>  
+    <h1 id="saudação"></h1>  
+    <div id="janela" class="janela">
+        <div class="conteudo-janela">
+            <span class="fechar" onclick="fecharPopup()"></span>
+            <h2>Por favor, digite seu nome!</h2>
+            <input id="inputNome" type="text" placeholder="Digite seu nome..." required>
+            <button id="enviar" onclick="enviar()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function abrirPopup() {
+            document.getElementById("janela").style.display = "block";
+        }
+
+        function fecharPopup() {
+            document.getElementById("janela").style.display = "none";
+        }
+
+        function enviar() {
+        const nome = document.getElementById("inputNome").value;
+        const mensagem = document.getElementById("mensagem");
+        const saudacao = document.getElementById("saudação");
+
+    if (nome.trim() !== "") {
+        const agora = new Date(); 
+        const hora = agora.getHours(); 
+        let saudacaoTexto;
+
+        
+        if (hora >= 6 && hora < 12) {
+            saudacaoTexto = "Bom dia, " + nome + "!";
+        } else if (hora >= 12 && hora < 18) {
+            saudacaoTexto = "Boa tarde, " + nome + "!";
+        
+        } else if (hora >= 18 && hora < 0) {
+        saudacaoTexto = "Boa noite, " + nome + "!";
+
+        } else {
+            saudacaoTexto = "Boa madrugada, " + nome + "!";
+        }
+
+        saudacao.innerHTML = saudacaoTexto; 
+        fecharPopup();
+        
+    } else {
+        mensagem.innerHTML = "Por favor, digite seu nome!"; 
+    
+    }
+}
+        
+        window.onload = function() {
+            abrirPopup();
+        }
+
+
+
+        
+    </script>
+</body>
+</html>
